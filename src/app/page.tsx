@@ -1,10 +1,13 @@
 "use client"
 
-import React, { useRef } from 'react';
+import React, { useRef, FC } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import Image from 'next/image';
+import { CardBody, CardContainer, CardItem } from '@/components/ui/d-card';
+import { LampContainer } from '@/components/ui/lamp';
+
 
 const Home = () => {
  
@@ -28,34 +31,46 @@ const Home = () => {
       </Head>
 
       {/* Hero Section */}
-     <section className="flex flex-col items-center justify-center min-h-screen px-4 md:px-8">
-  <motion.h1
-    className="hero-heading text-4xl sm:text-5xl md:text-7xl font-bold text-center leading-tight"
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 1 }}
-  >
-    Hi, I&apos;m <span className="text-cyan-500">Sahil Mahadik</span>
-  </motion.h1>
+     
+      <section className="relative flex flex-col items-center justify-center min-h-screen bg-slate-950 px-6 md:px-12">
+      {/* Subtle Neon Glow Effect */}
+      <div className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 via-transparent to-transparent blur-3xl" />
 
-  <motion.p
-    className="hero-subtitle mt-4 text-base sm:text-lg md:text-2xl text-center max-w-prose"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1, delay: 0.3 }}
-  >
-    A Full Stack Developer
-  </motion.p>
+      {/* LampContainer for the glow effect */}
+      <LampContainer>
+        {/* Animated Heading */}
+        <motion.h1
+          className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-tight text-white text-center"
+          initial={{ opacity: 0, scale: 0.8, y: 50 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 1, ease: "easeInOut" }}
+        >
+          Hi, I'm 
+          
+          <span className="font-[Poppins] bg-gradient-to-r from-[#E9D5FF] via-[#F9A8D4] to-[#7DD3FC] bg-clip-text text-transparent"> Sahil Mahadik</span>
+        </motion.h1>
 
-  <motion.button
-    className="mt-6 px-4 sm:px-6 py-2 sm:py-3 bg-cyan-500 rounded-lg text-sm sm:text-lg font-semibold hover:bg-cyan-600 transition-all"
-    whileHover={{ scale: 1.1 }}
-    whileTap={{ scale: 0.95 }}
-    onClick={handleScrollToContact}
-  >
-    Contact Me
-  </motion.button>
-</section>
+        {/* Animated Subtitle */}
+        <motion.p
+          className="mt-4 text-lg sm:text-xl md:text-2xl text-gray-300 text-center max-w-xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 1 }}
+        >
+          A Full Stack Developer 🚀
+        </motion.p>
+
+        {/* Floating Call to Action Button */}
+        <motion.button
+          className="mt-6 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl text-lg font-semibold shadow-md hover:shadow-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleScrollToContact}
+        >
+          Contact Me
+        </motion.button>
+      </LampContainer>
+    </section>
 
 
      
@@ -159,6 +174,13 @@ const Home = () => {
     transition={{ duration: 1, ease: "easeOut" }}
   >
     {[
+       {
+        title: "Animated Gaming Website",
+        description:
+          "Developed a highly interactive and visually engaging gaming website with advanced animations and smooth user interactions. Integrated multiple animated video layers for an immersive experience.",
+        technologies: "React.js, GSAP, Tailwind CSS",
+        link: "https://gaming-animated-website-sahils-projects-7c94b474.vercel.app/",
+      },
       {
         title: "Interkonnekt",
         description:
@@ -171,7 +193,7 @@ const Home = () => {
         description:
           "An interactive coding challenge platform featuring a variety of problems, progress tracking, and solutions sharing. Encourages learning through practice and competition.",
         technologies: "Next.js, TypeScript, MongoDB",
-        link: "https://github.com/sahil7208/CodeQuest",
+        link: "https://code-quest-6dzm-sahils-projects-7c94b474.vercel.app/",
       },
       {
         title: "LinkedIn Clone",
@@ -211,20 +233,29 @@ const Home = () => {
     ].map((project, index) => (
       <motion.div
         key={index}
-        className="relative w-full sm:w-1/2 lg:w-1/3 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-cyan-500/50 transform transition-transform duration-300 hover:scale-105"
-        whileHover={{ scale: 1.05 }}
+        className="relative w-full sm:w-1/2 lg:w-1/3 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-cyan-500/50 transform transition-transform duration-300 "
+       
       >
+        <CardContainer className='w-full h-full'>
+          <CardBody>
+           
         <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
+        <CardItem translateZ="60" className="w-full">
           <div className="h-36 sm:h-48 bg-gray-700 flex items-center justify-center">
             <h3 className="text-lg sm:text-2xl font-bold text-cyan-400">{project.title}</h3>
           </div>
+          </CardItem>
+          <CardItem className="bg-gray-800" translateZ="100">
           <div className="p-4 sm:p-6">
             <p className="text-sm sm:text-base text-gray-300 mb-4">{project.description}</p>
             <p className="text-xs sm:text-sm text-gray-500 font-medium">
               Technologies: {project.technologies}
             </p>
           </div>
+          </CardItem>
         </a>
+        </CardBody>
+        </CardContainer>
       </motion.div>
     ))}
   </motion.div>
