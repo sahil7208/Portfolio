@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, FC } from 'react';
+import React, { useRef } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
@@ -45,7 +45,7 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 1, ease: "easeInOut" }}
         >
-          Hi, I'm 
+          Hi, I&apos;m 
           
           <span className="font-[Poppins] bg-gradient-to-r from-[#E9D5FF] via-[#F9A8D4] to-[#7DD3FC] bg-clip-text text-transparent"> Sahil Mahadik</span>
         </motion.h1>
