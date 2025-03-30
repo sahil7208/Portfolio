@@ -112,11 +112,11 @@ const Home = () => {
     <div className="absolute w-1 bg-cyan-500 h-full left-1/2 transform -translate-x-1/2"></div>
 
     {[
-      { category: "Frontend Technologies", skills: ["React.js", "Next.js", "Tailwind CSS"], icon: "/images/front-end.png" },
-      { category: "Backend Technologies", skills: ["Node.js", "Express.js"], icon: "/images/backend-coding.png" },
+      { category: "Frontend Technologies", skills: ["React.js", "Next.js", "Redux","Tailwind CSS"], icon: "/images/front-end.png" },
+      { category: "Backend Technologies", skills: ["Node.js", "Express.js", "REST APIs", "JWT", "OAuth"], icon: "/images/backend-coding.png" },
       { category: "Programming Languages", skills: ["JavaScript", "TypeScript", "Java"], icon: "/images/programming.png" },
-      { category: "Database", skills: ["MongoDB", "PostgreSQL"], icon: "/images/database-storage.png" },
-      { category: "Tools", skills: ["Git", "GitHub"], icon: "/images/tools.png" },
+      { category: "Database", skills: ["SQL", "MongoDB", "PostgreSQL"], icon: "/images/database-storage.png" },
+      { category: "Tools", skills: ["Git", "GitHub", "POSTMAN", "Vercel"], icon: "/images/tools.png" },
     ].map(({ category, skills, icon }, index) => (
       <motion.div
         key={category}
@@ -168,12 +168,19 @@ const Home = () => {
 <section id="projects" className="px-4 sm:px-6 md:px-8 py-16 bg-gray-800">
   <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center text-cyan-400">Projects</h2>
   <motion.div
-    className="flex flex-wrap justify-center gap-8"
+    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
     initial={{ opacity: 0, y: 50 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 1, ease: "easeOut" }}
   >
     {[
+      {
+        "title": "SaaS AI Video Generator",
+        "description": 
+          "Developed a SaaS-based AI video generator that transforms text prompts into engaging short videos. Integrated AI models for script generation, voiceovers, and automatic scene transitions. Optimized for high-speed rendering and seamless user experience.",
+        "technologies": "Next.js, JavaScript, OpenAI API, Convex, Tailwind CSS, REST APIs, Remotion",
+        "link": "https://ai-short-video-generator-ac6i.vercel.app/"
+      },      
        {
         title: "Animated Gaming Website",
         description:
@@ -233,22 +240,22 @@ const Home = () => {
     ].map((project, index) => (
       <motion.div
         key={index}
-        className="relative w-full sm:w-1/2 lg:w-1/3 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-cyan-500/50 transform transition-transform duration-300 "
+       className="relative flex flex-col bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl shadow-lg hover:shadow-cyan-500/50 transition-transform transform duration-300 overflow-hidden min-h-full"
        
       >
-        <CardContainer className='w-full h-full'>
+        <CardContainer className=''>
           <CardBody>
            
-        <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
+        <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex flex-col flex-grow">
         <CardItem translateZ="60" className="w-full">
           <div className="h-36 sm:h-48 bg-gray-700 flex items-center justify-center">
-            <h3 className="text-lg sm:text-2xl font-bold text-cyan-400">{project.title}</h3>
+            <h3 className="text-lg sm:text-2xl font-bold text-cyan-400 text-center">{project.title}</h3>
           </div>
           </CardItem>
           <CardItem className="bg-gray-800" translateZ="100">
-          <div className="p-4 sm:p-6">
+          <div className="p-4 sm:p-6 flex flex-col flex-grow">
             <p className="text-sm sm:text-base text-gray-300 mb-4">{project.description}</p>
-            <p className="text-xs sm:text-sm text-gray-500 font-medium">
+            <p className="text-xs sm:text-sm text-gray-500 font-medium mt-auto">
               Technologies: {project.technologies}
             </p>
           </div>
